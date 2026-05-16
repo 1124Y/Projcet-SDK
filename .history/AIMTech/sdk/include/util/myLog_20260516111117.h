@@ -1,0 +1,26 @@
+#pragma once
+
+#include <mutex>
+#include <spdlog/spdlog.h>
+#include <spdlog/spdlog.h>
+#include <memory>
+
+namespace myLog
+{
+    class Logger
+    {
+    public:
+        static void initLogger(const std::string &loggerName, const std::string &loggerFile, spdlog::level::level_enum logLevel = spdlog::level::info);
+        static std::shared_ptr<spdlog::logger> getLogger();
+
+    private:
+        Logger();
+        Logger(const Logger &) = delete;            // 禁止拷贝构造
+        Logger &operator=(const Logger &) = delete; // 禁止赋值操作
+
+    private:
+        static std::shared_ptr<spdlog::logger> _logger;
+        static std::mutex _mutex;
+    };
+
+} // end myLog

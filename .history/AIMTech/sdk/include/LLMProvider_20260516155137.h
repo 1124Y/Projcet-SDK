@@ -1,0 +1,20 @@
+#include <string>
+#include <map>
+namespace ai_char_sdk
+{
+    class LLMProvider
+    {
+    public:
+        // 初始化模型 纯虚函数，必须由派生类实现
+        virtual void initModel(const std::map<std::string, std::string> &modelConfig) = 0;
+        // 检测模型是否有效
+        virtual std::string getModelName() const = 0;
+        virtual std::string getModelDesc() const = 0;
+        virtual bool isAvailable() const = 0;
+
+    private:
+        bool _isAvailable = false; // 模型是否有效
+        std::string _apiKey;       // 模型的API密钥
+        std::string _endpoint;     // 模型的API端点URL
+    };
+} // end ai_char_sdk
