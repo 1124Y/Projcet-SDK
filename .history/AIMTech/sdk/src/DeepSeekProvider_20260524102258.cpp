@@ -67,7 +67,6 @@ namespace ai_chat_sdk
         // 2. 构造请求参数
         double temperature = 0.7;
         int maxTokens = 2048;
-        // 检查用户传入的参数集合里，是否包含了 temperature 字段
         if (requestParam.find("temperature") != requestParam.end())
         {
             temperature = std::stod(requestParam.at("temperature"));
@@ -144,17 +143,12 @@ namespace ai_chat_sdk
 
                 if (choice.isMember("message") && choice["message"].isMember("content"))
                 {
-                    // choice["message"]["content"].asString();：把 JSON 字符串类型的内容，转换成 C++ 标准的std::string。
                     std::string replyContent = choice["message"]["content"].asString();
                     INFO("DeepSeekProvider response text: {}", replyContent);
                     return replyContent;
                 }
             }
         }
-
-        // 8. json解析失败
-        ERR("DeepSeekProvider sendMessage POST response body parse failed, error");
-        return "deepseek response json parse failed";
     }
     // 发送消息 - 增量返回 - 流式响应
     std::string DeepSeekProvider::sendMessageStream(const std::vector<Message> &messages,
