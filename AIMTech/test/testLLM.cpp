@@ -18,7 +18,7 @@ TEST(DeepSeekProviderTest, sendMessage)
         {"temperature", "0.7"},
         {"max_tokens", "2048"}};
     std::vector<ai_chat_sdk::Message> messages;
-    messages.push_back({"user", "你是谁？"});
+    messages.push_back({"user", "你好？"});
 
     // 实例化DeepSeekProvider的对象
     // 调用sendMessage方法

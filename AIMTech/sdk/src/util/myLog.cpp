@@ -7,19 +7,24 @@
 
 namespace myLog
 {
+    // 静态成员变量初始化：全局唯一的日志器实例
     std::shared_ptr<spdlog::logger> Logger::_logger = nullptr;
+    // 静态成员变量初始化：互斥锁，保证多线程初始化安全
     std::mutex Logger::_mutex;
 
     Logger::Logger()
     {
     }
 
+    //   loggerName  : 日志器的名称，会显示在日志前缀中
+    //   loggerFile  : 日志输出文件路径（如 "./app.log"），同时也会输出到控制台
+    //   logLevel    : 日志最低输出级别，默认是 info（低于 info 的日志不会被输出）
     void Logger::initLogger(const std::string &loggerName, const std::string &loggerFile, spdlog::level::level_enum logLevel)
     {
-        if (nullptr == _logger)
+        if (_logger == nullptr)
         {
             std::lock_guard<std::mutex> lock(_mutex);
-            if (nullptr == _logger)
+            if (_logger == nullptr)
             {
                 // 设置全局自动刷新级别，当日志级别 ≥ logLevel 时，日志会被立即刷新到文件
                 spdlog::flush_on(logLevel);
@@ -43,7 +48,7 @@ namespace myLog
             // [%n] 日志器名称
             // [%-7l] 日志级别，左对齐，宽度为7个字符
             // %v 日志消息
-            _logger->set_pattern("[%H:%M:%S][%n][%-7l]%v");
+            _logger->set_pattern("[%H:%M:%S][%n][%-4l]%v");
             _logger->set_level(logLevel);
         }
     }
