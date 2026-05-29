@@ -185,7 +185,6 @@ namespace ai_chat_sdk
         ERR("DeepSeekProvider sendMessage POST response body parse failed, error");
         return "deepseek response json parse failed";
     }
-
     // 发送消息 - 增量返回 - 流式响应
     std::string DeepSeekProvider::sendMessageStream(const std::vector<Message> &messages,
                                                     const std::map<std::string, std::string> &requestParam,

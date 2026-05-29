@@ -120,28 +120,23 @@ namespace ai_chat_sdk
         // 4. 序列化
         // Json::StreamWriterBuilder 是 JsonCpp 库的序列化工具
         Json::StreamWriterBuilder writerBuilder;
-        // 设置缩进为空字符串
         writerBuilder["indentation"] = "";
         std::string requestBodyStr = Json::writeString(writerBuilder, requestBody);
         INFO("DeepSeekProvider sendMessage requestBody: {}", requestBodyStr.c_str());
 
         // 5. 使用cpp-httplib库构造HTTP客户端
-        // httplib::Client 是 cpp-httplib 库的 HTTP 客户端类
-        // 传入 DeepSeek API 的 _endpoint（如 https://api.deepseek.com）
         httplib::Client client(_endpoint.c_str());
-        client.set_connection_timeout(50, 0); // 设置连接服务器的超时时间为 50 秒
-        client.set_read_timeout(60, 0);       // 设置从服务器读取响应的超时时间为 60 秒
+        client.set_connection_timeout(30, 0); // 连接超时时间为30秒
+        client.set_read_timeout(60, 0);       // 设置超时时间为60秒
 
         // 设置请求头
         httplib::Headers headers =
             {
                 {"Authorization", "Bearer " + _apiKey},
-                // 告诉服务器，请求体是 JSON 格式的数据，服务器会按 JSON 解析请求内容
                 {"Content-Type", "application/json"}};
 
         // 6. 发送POST请求  v1：是为了和open AI保持一致 headers：请求头 requestBodyStr：请求体  application/json：内容
         auto response = client.Post("/v1/chat/completions", headers, requestBodyStr, "application/json");
-        // 判断 HTTP 请求是否发送失败
         if (!response)
         {
             ERR("DeepSeekProvider sendMessage POST request failed");
@@ -157,10 +152,10 @@ namespace ai_chat_sdk
         }
 
         // 7. 解析响应体
-        Json::Value responseBody;                          // 用来存放解析后的 JSON 数据
-        Json::CharReaderBuilder readerBuilder;             // JsonCpp 库中用于创建 JSON 解析器的工厂类，配置解析行为
-        std::string parseError;                            // 如果解析失败，会把错误信息存到这个字符串里，方便调试
-        std::istringstream responseStream(response->body); // 把 API 返回的响应体字符串，包装成一个输入流，方便 parseFromStream 读取
+        Json::Value responseBody;
+        Json::CharReaderBuilder readerBuilder;
+        std::string parseError;
+        std::istringstream responseStream(response->body);
         if (Json::parseFromStream(readerBuilder, responseStream, &responseBody, &parseError))
         {
             // 获取message数组
@@ -169,11 +164,11 @@ namespace ai_chat_sdk
             //! responseBody["choices"].empty()：检查数组不为空，避免取空数组下标时越界。
             if (responseBody.isMember("choices") && responseBody["choices"].isArray() && !responseBody["choices"].empty())
             {
-                auto choice = responseBody["choices"][0]; // 取 choices 数组的第一个元素
-                // 检查 choice 对象中是否存在 message 字段，且 message 中是否存在 content 字段
+                auto choice = responseBody["choices"][0];
+
                 if (choice.isMember("message") && choice["message"].isMember("content"))
                 {
-                    // 把 JSON 字符串类型的内容，转换成 C++ 标准的std::string。
+                    // choice["message"]["content"].asString();：把 JSON 字符串类型的内容，转换成 C++ 标准的std::string。
                     std::string replyContent = choice["message"]["content"].asString();
                     INFO("DeepSeekProvider response text: {}", replyContent);
                     return replyContent;
@@ -185,7 +180,6 @@ namespace ai_chat_sdk
         ERR("DeepSeekProvider sendMessage POST response body parse failed, error");
         return "deepseek response json parse failed";
     }
-
     // 发送消息 - 增量返回 - 流式响应
     std::string DeepSeekProvider::sendMessageStream(const std::vector<Message> &messages,
                                                     const std::map<std::string, std::string> &requestParam,
