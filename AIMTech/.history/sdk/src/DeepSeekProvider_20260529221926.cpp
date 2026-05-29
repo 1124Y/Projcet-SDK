@@ -169,11 +169,11 @@ namespace ai_chat_sdk
             //! responseBody["choices"].empty()：检查数组不为空，避免取空数组下标时越界。
             if (responseBody.isMember("choices") && responseBody["choices"].isArray() && !responseBody["choices"].empty())
             {
-                auto choice = responseBody["choices"][0]; // 取 choices 数组的第一个元素
-                // 检查 choice 对象中是否存在 message 字段，且 message 中是否存在 content 字段
+                auto choice = responseBody["choices"][0];
+
                 if (choice.isMember("message") && choice["message"].isMember("content"))
                 {
-                    // 把 JSON 字符串类型的内容，转换成 C++ 标准的std::string。
+                    // choice["message"]["content"].asString();：把 JSON 字符串类型的内容，转换成 C++ 标准的std::string。
                     std::string replyContent = choice["message"]["content"].asString();
                     INFO("DeepSeekProvider response text: {}", replyContent);
                     return replyContent;
@@ -185,7 +185,6 @@ namespace ai_chat_sdk
         ERR("DeepSeekProvider sendMessage POST response body parse failed, error");
         return "deepseek response json parse failed";
     }
-
     // 发送消息 - 增量返回 - 流式响应
     std::string DeepSeekProvider::sendMessageStream(const std::vector<Message> &messages,
                                                     const std::map<std::string, std::string> &requestParam,
