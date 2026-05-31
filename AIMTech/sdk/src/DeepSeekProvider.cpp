@@ -320,13 +320,13 @@ namespace ai_chat_sdk
                     if (Json::parseFromStream(reader, modelDataStream, &modelDataJson, &errors))
                     {
                         // 模型返回的json格式的数据现在就保存在modelDataJson
-                        if (modelDataJson.isMember("choices") &&
-                            modelDataJson["choices"].isArray() &&
-                            !modelDataJson["choices"].empty() &&
-                            modelDataJson["choices"][0].isMember("delta") &&
-                            modelDataJson["choices"][0]["delta"].isMember("content"))
+                        if (modelDataJson.isMember("choices") &&                      // 判断是否包含choices字段
+                            modelDataJson["choices"].isArray() &&                     // 判断choices字段是否是数组类型
+                            !modelDataJson["choices"].empty() &&                      // 判断choices数组是否不为空
+                            modelDataJson["choices"][0].isMember("delta") &&          // 判断choices数组的第一个元素是否包含delta字段
+                            modelDataJson["choices"][0]["delta"].isMember("content")) // 判断delta字段是否包含content字段
                         {
-                            std::string content = modelDataJson["choices"][0]["delta"]["content"].asString();
+                            std::string content = modelDataJson["choices"][0]["delta"]["content"].asString(); // 获取模型返回的增量内容
                             // 处理deltaContent，例如追加到fullResponse
                             fullResponse += content;
 
