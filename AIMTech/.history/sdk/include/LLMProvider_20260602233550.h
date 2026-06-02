@@ -1,0 +1,53 @@
+#pragma once
+#include <functional>
+#include <string>
+#include <map>
+#include <vector>
+#include "common.h"
+
+namespace ai_chat_sdk
+{
+    // LLMProvider 类
+    class LLMProvider
+    {
+    public:
+        // 初始化模型
+        virtual bool initModel(const std::map<std::string, std::string> &modelConfig) = 0;
+        namespace ai_chat_sdk
+        {
+            class LLMProvider
+            {
+            public:
+                // 初始化模型 纯虚函数，必须由派生类实现
+                virtual void initModel(const std::map<std::string, std::string> &modelConfig) = 0;
+
+                // 检测模型是否有效
+                virtual bool isAvailable() const = 0;
+                // 获取模型名称
+                virtual std::string getModelName() const = 0;
+                // 获取模型描述
+                virtual std::string getModelDesc() const = 0;
+                // 发送消息 - 全量返回
+                virtual std::string sendMessage(const std::vector<Message> &messages, const std::map<std::string, std::string> &requestParam) = 0;
+                // 发送消息 - 增量返回 - 流式响应
+                virtual std::string sendMessageStream(const std::vector<Message> &messages,
+                                                      const std::map<std::string, std::string> &requestParam,
+                                                      std::function<void(const std::string &, bool)> callback) = 0; // callback: 对模型返回的增量数据如何处理，第一个参数为增量数据，第二个参数为是否为最后一个增量数据
+
+            protected:
+                bool _isAvailable = false; // 标记模型是否有效
+                std::string _apiKey;       // API密钥
+                std::string _endpoint;     // 模型API endpoint  base url
+                                           // 发送消息 全量返回
+                void sendMessage(const std::vector<Message> &message, const std::map<std::string, std::string> &requestParam);
+                // 发送消息 增量返回 流式响应
+                void sendMessageStream(const std::vector<Message> &message,
+                                       const std::map<std::string, std::string> &requestParam,
+                                       std::function<void(const std::string &, bool)> callback); // callback参数：第一个参数为模型返回的增量内容，第二个参数表示是否为响应结束
+
+            private:
+                bool _isAvailable = false; // 模型是否有效
+                std::string _apiKey;       // 模型的API密钥
+                std::string _endpoint;     // 模型的API端点URL
+            };
+        } // end ai_chat_sdk

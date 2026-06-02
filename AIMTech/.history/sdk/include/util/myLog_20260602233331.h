@@ -3,10 +3,11 @@
 #include <spdlog/logger.h>
 #include <mutex>
 #include <spdlog/spdlog.h>
+>>>>>>> 76bbbe4 (API的多态)
 #include <spdlog/spdlog.h>
 #include <memory>
 
-namespace myLog
+    namespace myLog
 {
     class Logger
     {
@@ -19,9 +20,12 @@ namespace myLog
 
     private:
         Logger();
+
         Logger(const Logger &) = delete;
-        Logger &operator=(const Logger &) = delete; // 禁止赋值操作
-        Logger(const Logger &) = delete;            // 禁止拷贝构造
+        Logger &operator=(const Logger &) = delete;
+        == == == =
+                     Logger & operator=(const Logger &) = delete; // 禁止赋值操作
+        Logger(const Logger &) = delete;                          // 禁止拷贝构造
 
     private:
         static std::shared_ptr<spdlog::logger> _logger;

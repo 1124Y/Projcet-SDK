@@ -33,5 +33,15 @@ namespace ai_chat_sdk
         std::string _apiKey;       // API密钥
         std::string _endpoint;     // 模型API endpoint  base url
                                    // 发送消息 全量返回
+        void sendMessage(const std::vector<Message> &message, const std::map<std::string, std::string> &requestParam);
+        // 发送消息 增量返回 流式响应
+        void sendMessageStream(const std::vector<Message> &message,
+                               const std::map<std::string, std::string> &requestParam,
+                               std::function<void(const std::string &, bool)> callback); // callback参数：第一个参数为模型返回的增量内容，第二个参数表示是否为响应结束
+
+    private:
+        bool _isAvailable = false; // 模型是否有效
+        std::string _apiKey;       // 模型的API密钥
+        std::string _endpoint;     // 模型的API端点URL
     };
 } // end ai_chat_sdk

@@ -19,9 +19,12 @@ namespace myLog
 
     private:
         Logger();
+
         Logger(const Logger &) = delete;
-        Logger &operator=(const Logger &) = delete; // 禁止赋值操作
-        Logger(const Logger &) = delete;            // 禁止拷贝构造
+        Logger &operator=(const Logger &) = delete;
+        == == == =
+                     Logger & operator=(const Logger &) = delete; // 禁止赋值操作
+        Logger(const Logger &) = delete;                          // 禁止拷贝构造
 
     private:
         static std::shared_ptr<spdlog::logger> _logger;
