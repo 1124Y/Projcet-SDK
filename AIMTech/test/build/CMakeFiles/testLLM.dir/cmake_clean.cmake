@@ -1,6 +1,8 @@
 file(REMOVE_RECURSE
   "CMakeFiles/testLLM.dir/home/stu/P-SDK/Projcet-SDK/AIMTech/sdk/src/DeepSeekProvider.cpp.o"
   "CMakeFiles/testLLM.dir/home/stu/P-SDK/Projcet-SDK/AIMTech/sdk/src/DeepSeekProvider.cpp.o.d"
+  "CMakeFiles/testLLM.dir/home/stu/P-SDK/Projcet-SDK/AIMTech/sdk/src/OllamaLLMProvider.cpp.o"
+  "CMakeFiles/testLLM.dir/home/stu/P-SDK/Projcet-SDK/AIMTech/sdk/src/OllamaLLMProvider.cpp.o.d"
   "CMakeFiles/testLLM.dir/home/stu/P-SDK/Projcet-SDK/AIMTech/sdk/src/util/myLog.cpp.o"
   "CMakeFiles/testLLM.dir/home/stu/P-SDK/Projcet-SDK/AIMTech/sdk/src/util/myLog.cpp.o.d"
   "CMakeFiles/testLLM.dir/testLLM.cpp.o"

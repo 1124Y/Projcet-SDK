@@ -15,7 +15,9 @@ set(CMAKE_BUILD_TYPE Debug)
 # 添加可执行文件
 add_executable(testLLM testLLM.cpp
 ../sdk/src/util/myLog.cpp
-../sdk/src/DeepSeekProvider.cpp)
+../sdk/src/DeepSeekProvider.cpp
+../sdk/src/OllamaLLMProvider.cpp
+)
 
 
 

@@ -13,8 +13,6 @@ namespace ai_chat_sdk
     public:
         // 初始化模型
         virtual bool initModel(const std::map<std::string, std::string> &modelConfig) = 0;
-        // 初始化模型 纯虚函数，必须由派生类实现
-        virtual void initModel(const std::map<std::string, std::string> &modelConfig) = 0;
         // 检测模型是否有效
         virtual bool isAvailable() const = 0;
         // 获取模型名称

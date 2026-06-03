@@ -337,4 +337,5 @@ CMakeFiles/testLLM.dir/testLLM.cpp.o: \
  /usr/include/spdlog/sinks/ansicolor_sink-inl.h \
  /usr/include/spdlog/version.h \
  /usr/include/spdlog/details/synchronous_factory.h \
- /usr/include/spdlog/spdlog-inl.h
+ /usr/include/spdlog/spdlog-inl.h \
+ /home/stu/P-SDK/Projcet-SDK/AIMTech/test/../sdk/include/OllamaLLMProvider.h

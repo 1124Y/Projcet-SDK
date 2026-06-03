@@ -1,7 +1,9 @@
 #include <gtest/gtest.h>
 #include "../sdk/include/DeepSeekProvider.h"
 #include "../sdk/include/util/myLog.h"
+#include "../sdk/include/OllamaLLMProvider.h"
 
+#if 0
 TEST(DeepSeekProviderTest, sendMessage)
 {
     auto provider = std::make_shared<ai_chat_sdk::DeepSeekProvider>();
@@ -24,6 +26,48 @@ TEST(DeepSeekProviderTest, sendMessage)
     // 调用sendMessage方法
     // std::string response = provider->sendMessage(messages, requestParam);
 
+    auto writeChunk = [&](const std::string &chunk, bool last)
+    {
+        INFO("chunk : {}", chunk);
+        if (last)
+        {
+            INFO("[DONE]");
+        }
+    };
+    std::string fullData = provider->sendMessageStream(messages, requestParam, writeChunk);
+    ASSERT_FALSE(fullData.empty());
+    INFO("response : {}", fullData);
+}
+#endif
+
+TEST(OllamaLLMProviderTest, sendMessage)
+{
+    auto provider = std::make_shared<ai_chat_sdk::OllamaLLMProvider>();
+    ASSERT_TRUE(provider != nullptr);
+
+    std::map<std::string, std::string> modelParam;
+    modelParam["model_name"] = "deepseek-r1:1.5b";
+    modelParam["model_desc"] = "本地部署deepseek-r1:1.5b模型，适合日常问答与创作";
+    modelParam["endpoint"] = "http://localhost:11434";
+
+    provider->initModel(modelParam);
+    ASSERT_TRUE(provider->isAvailable());
+
+    std::map<std::string, std::string> requestParam =
+        {
+            {"temperature", "0.7"},
+            {"max_tokens", "2048"}};
+    std::vector<ai_chat_sdk::Message> messages;
+    messages.push_back({"user", "你是谁？"});
+
+    // 实例化OllamaLLMProvider的对象
+    // 调用sendMessage方法
+
+    // 全量返回
+    //  std::string fullData = provider->sendMessage(messages, requestParam);
+    //  ASSERT_FALSE(fullData.empty());
+
+    // 流式响应
     auto writeChunk = [&](const std::string &chunk, bool last)
     {
         INFO("chunk : {}", chunk);

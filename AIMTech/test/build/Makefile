@@ -153,6 +153,30 @@ home/stu/P-SDK/Projcet-SDK/AIMTech/sdk/src/DeepSeekProvider.cpp.s:
 	$(MAKE) $(MAKESILENT) -f CMakeFiles/testLLM.dir/build.make CMakeFiles/testLLM.dir/home/stu/P-SDK/Projcet-SDK/AIMTech/sdk/src/DeepSeekProvider.cpp.s
 .PHONY : home/stu/P-SDK/Projcet-SDK/AIMTech/sdk/src/DeepSeekProvider.cpp.s
 
+home/stu/P-SDK/Projcet-SDK/AIMTech/sdk/src/OllamaLLMProvider.o: home/stu/P-SDK/Projcet-SDK/AIMTech/sdk/src/OllamaLLMProvider.cpp.o
+.PHONY : home/stu/P-SDK/Projcet-SDK/AIMTech/sdk/src/OllamaLLMProvider.o
+
+# target to build an object file
+home/stu/P-SDK/Projcet-SDK/AIMTech/sdk/src/OllamaLLMProvider.cpp.o:
+	$(MAKE) $(MAKESILENT) -f CMakeFiles/testLLM.dir/build.make CMakeFiles/testLLM.dir/home/stu/P-SDK/Projcet-SDK/AIMTech/sdk/src/OllamaLLMProvider.cpp.o
+.PHONY : home/stu/P-SDK/Projcet-SDK/AIMTech/sdk/src/OllamaLLMProvider.cpp.o
+
+home/stu/P-SDK/Projcet-SDK/AIMTech/sdk/src/OllamaLLMProvider.i: home/stu/P-SDK/Projcet-SDK/AIMTech/sdk/src/OllamaLLMProvider.cpp.i
+.PHONY : home/stu/P-SDK/Projcet-SDK/AIMTech/sdk/src/OllamaLLMProvider.i
+
+# target to preprocess a source file
+home/stu/P-SDK/Projcet-SDK/AIMTech/sdk/src/OllamaLLMProvider.cpp.i:
+	$(MAKE) $(MAKESILENT) -f CMakeFiles/testLLM.dir/build.make CMakeFiles/testLLM.dir/home/stu/P-SDK/Projcet-SDK/AIMTech/sdk/src/OllamaLLMProvider.cpp.i
+.PHONY : home/stu/P-SDK/Projcet-SDK/AIMTech/sdk/src/OllamaLLMProvider.cpp.i
+
+home/stu/P-SDK/Projcet-SDK/AIMTech/sdk/src/OllamaLLMProvider.s: home/stu/P-SDK/Projcet-SDK/AIMTech/sdk/src/OllamaLLMProvider.cpp.s
+.PHONY : home/stu/P-SDK/Projcet-SDK/AIMTech/sdk/src/OllamaLLMProvider.s
+
+# target to generate assembly for a file
+home/stu/P-SDK/Projcet-SDK/AIMTech/sdk/src/OllamaLLMProvider.cpp.s:
+	$(MAKE) $(MAKESILENT) -f CMakeFiles/testLLM.dir/build.make CMakeFiles/testLLM.dir/home/stu/P-SDK/Projcet-SDK/AIMTech/sdk/src/OllamaLLMProvider.cpp.s
+.PHONY : home/stu/P-SDK/Projcet-SDK/AIMTech/sdk/src/OllamaLLMProvider.cpp.s
+
 home/stu/P-SDK/Projcet-SDK/AIMTech/sdk/src/util/myLog.o: home/stu/P-SDK/Projcet-SDK/AIMTech/sdk/src/util/myLog.cpp.o
 .PHONY : home/stu/P-SDK/Projcet-SDK/AIMTech/sdk/src/util/myLog.o
 
@@ -213,6 +237,9 @@ help:
 	@echo "... home/stu/P-SDK/Projcet-SDK/AIMTech/sdk/src/DeepSeekProvider.o"
 	@echo "... home/stu/P-SDK/Projcet-SDK/AIMTech/sdk/src/DeepSeekProvider.i"
 	@echo "... home/stu/P-SDK/Projcet-SDK/AIMTech/sdk/src/DeepSeekProvider.s"
+	@echo "... home/stu/P-SDK/Projcet-SDK/AIMTech/sdk/src/OllamaLLMProvider.o"
+	@echo "... home/stu/P-SDK/Projcet-SDK/AIMTech/sdk/src/OllamaLLMProvider.i"
+	@echo "... home/stu/P-SDK/Projcet-SDK/AIMTech/sdk/src/OllamaLLMProvider.s"
 	@echo "... home/stu/P-SDK/Projcet-SDK/AIMTech/sdk/src/util/myLog.o"
 	@echo "... home/stu/P-SDK/Projcet-SDK/AIMTech/sdk/src/util/myLog.i"
 	@echo "... home/stu/P-SDK/Projcet-SDK/AIMTech/sdk/src/util/myLog.s"

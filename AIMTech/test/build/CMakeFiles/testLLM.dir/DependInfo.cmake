@@ -9,6 +9,7 @@ set(CMAKE_DEPENDS_LANGUAGES
 # The set of dependency files which are needed:
 set(CMAKE_DEPENDS_DEPENDENCY_FILES
   "/home/stu/P-SDK/Projcet-SDK/AIMTech/sdk/src/DeepSeekProvider.cpp" "CMakeFiles/testLLM.dir/home/stu/P-SDK/Projcet-SDK/AIMTech/sdk/src/DeepSeekProvider.cpp.o" "gcc" "CMakeFiles/testLLM.dir/home/stu/P-SDK/Projcet-SDK/AIMTech/sdk/src/DeepSeekProvider.cpp.o.d"
+  "/home/stu/P-SDK/Projcet-SDK/AIMTech/sdk/src/OllamaLLMProvider.cpp" "CMakeFiles/testLLM.dir/home/stu/P-SDK/Projcet-SDK/AIMTech/sdk/src/OllamaLLMProvider.cpp.o" "gcc" "CMakeFiles/testLLM.dir/home/stu/P-SDK/Projcet-SDK/AIMTech/sdk/src/OllamaLLMProvider.cpp.o.d"
   "/home/stu/P-SDK/Projcet-SDK/AIMTech/sdk/src/util/myLog.cpp" "CMakeFiles/testLLM.dir/home/stu/P-SDK/Projcet-SDK/AIMTech/sdk/src/util/myLog.cpp.o" "gcc" "CMakeFiles/testLLM.dir/home/stu/P-SDK/Projcet-SDK/AIMTech/sdk/src/util/myLog.cpp.o.d"
   "/home/stu/P-SDK/Projcet-SDK/AIMTech/test/testLLM.cpp" "CMakeFiles/testLLM.dir/testLLM.cpp.o" "gcc" "CMakeFiles/testLLM.dir/testLLM.cpp.o.d"
   )
