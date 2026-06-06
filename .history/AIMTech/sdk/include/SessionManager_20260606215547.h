@@ -1,6 +1,7 @@
 #pragma once
 
 #include <unordered_map>
+
 #include <vector>
 #include <string>
 #include <mutex>
@@ -10,7 +11,6 @@
 
 namespace ai_chat_sdk
 {
-    // SessionManager类，负责管理会话信息，提供接口供外部调用
     class SessionManager
     {
     private:

@@ -81,8 +81,9 @@ public:
     bool queryStudentInfo(const std::string &name)
     {
         // 查询学生信息
+        // SELECT stuid, name, gender, age, gap FROM Student WHERE name = ?;
         std::string querySQL = R"(
-            SELECT stuid, name, gender, age, gap FROM Student WHERE name = ?;
+            SELECT * FROM Student WHERE name = ?;
         )";
 
         // 准备SQL语句
@@ -172,6 +173,7 @@ public:
             // 继续提取下一行
             rc = sqlite3_step(stmt);
         }
+        std::cout << "------------------------------------------" << std::endl;
 
         // 检查是否还有更多行
         if (rc != SQLITE_DONE)
@@ -279,11 +281,32 @@ private:
     }
 
 private:
-    sqlite3 *_db;
+    sqlite3 *_db = nullptr;
 };
 
 int main()
 {
+    StudentInfo info1 = {"小张", "男", 20, 3.5};
+    StudentInfo info2 = {"小李", "女", 22, 3.8};
+    StudentInfo info3 = {"小王", "男", 21, 3.9};
+    StudentInfo info4 = {"小赵", "女", 23, 3.6};
+
+    StudentDB db("student.db");
+    db.insertStudentInfo(info1);
+    db.insertStudentInfo(info2);
+    db.insertStudentInfo(info3);
+    db.insertStudentInfo(info4);
+
+    // 查询所有学生信息
+    db.queryAllStudentInfo();
+
+    info3.gap = 4.0;
+    db.updateStudentInfo(info3.name, info3);
+    db.queryStudentInfo(info3.name);
+
+    // 删除
+    db.deleteStudentInfo(info4.name);
+    db.queryAllStudentInfo();
 
     return 0;
 }
