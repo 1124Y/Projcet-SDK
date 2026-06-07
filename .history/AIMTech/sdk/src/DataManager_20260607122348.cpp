@@ -348,7 +348,7 @@ namespace ai_chat_sdk
         // 准备SQL语句
         std::string selectSQL = R"(
         SELECT COUNT(*) FROM sessions;
-        )";
+    )";
 
         // 准备SQL语句
         sqlite3_stmt *stmt;
@@ -385,7 +385,7 @@ namespace ai_chat_sdk
         // 构建SQL语句
         std::string deleteSQL = R"(
         DELETE FROM sessions;
-        )";
+    )";
 
         // 准备SQL语句
         sqlite3_stmt *stmt;
@@ -411,7 +411,7 @@ namespace ai_chat_sdk
         return true;
     }
 
-    ///////////////////////////////////Messages///////////////////////////////////////
+    /////////////////////////////////////////////////////////////Messages///////////////////////////////////////
     // 插入新消息--注意：插入消息时，需要更新会话的时间戳
     bool DataManager::insertMessage(const std::string &sessionId, const Message &message)
     {
@@ -421,7 +421,7 @@ namespace ai_chat_sdk
         std::string insertSQL = R"(
         INSERT INTO messages (message_id, session_id, role, content, timestamp)
         VALUES (?, ?, ?, ?, ?);
-        )";
+    )";
 
         // 准备SQL语句
         sqlite3_stmt *stmt;
@@ -451,7 +451,7 @@ namespace ai_chat_sdk
         // 同时更新session的update_time
         std::string updateSQL = R"(
         UPDATE sessions SET update_time = ? WHERE session_id = ?;
-        )";
+    )";
 
         // 准备SQL语句
         sqlite3_stmt *updateStmt;
@@ -491,7 +491,7 @@ namespace ai_chat_sdk
         // 准备SQL语句
         std::string selectSQL = R"(
         SELECT message_id, role, content, timestamp FROM messages WHERE session_id = ?;
-        )";
+    )";
 
         // 准备SQL语句
         sqlite3_stmt *stmt;
@@ -537,7 +537,7 @@ namespace ai_chat_sdk
         // 构建SQL语句
         std::string deleteSQL = R"(
         DELETE FROM messages WHERE session_id = ?;
-        )";
+    )";
 
         // 准备SQL语句
         sqlite3_stmt *stmt;

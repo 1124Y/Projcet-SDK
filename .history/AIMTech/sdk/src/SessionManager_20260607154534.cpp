@@ -161,8 +161,9 @@ namespace ai_chat_sdk
         if (it != _sessions.end())
         {
             it->second->_updatedAt = std::time(nullptr);
+            _mutex.unlock();
+            return;
         }
-        _mutex.unlock();
 
         // 更新数据库中的会话时间戳
         _dataManager.updateSessionTimestamp(sessionId, it->second->_updatedAt);

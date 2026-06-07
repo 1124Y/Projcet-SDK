@@ -348,7 +348,7 @@ namespace ai_chat_sdk
         // 准备SQL语句
         std::string selectSQL = R"(
         SELECT COUNT(*) FROM sessions;
-        )";
+    )";
 
         // 准备SQL语句
         sqlite3_stmt *stmt;
@@ -385,7 +385,7 @@ namespace ai_chat_sdk
         // 构建SQL语句
         std::string deleteSQL = R"(
         DELETE FROM sessions;
-        )";
+    )";
 
         // 准备SQL语句
         sqlite3_stmt *stmt;

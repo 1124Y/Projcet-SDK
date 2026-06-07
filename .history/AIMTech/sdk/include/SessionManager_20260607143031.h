@@ -19,7 +19,7 @@ namespace ai_chat_sdk
         // 创建会话，提供模型名称
         std::string createSession(const std::string &modelName);
         // 通过会话ID获取会话信息
-        std::shared_ptr<Session> getSession(const std::string &sessionId);
+        std::shared_ptr<Session> getSession(const std::string &sessionId) const;
 
         // 往某个会话中添加消息
         bool addMessage(const std::string &sessionId, const Message &message);

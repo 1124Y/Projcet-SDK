@@ -107,31 +107,31 @@ namespace ai_chat_sdk
     // 往某个会话中添加消息
     bool SessionManager::addMessage(const std::string &sessionId, const Message &message)
     {
-        // std::lock_guard<std::mutex> lock(_mutex);
-        _mutex.lock();
+        std::lock_guard<std::mutex> lock(_mutex);
+        // _mutex.lock();
 
         // 获取到sessionId对应的会话
         auto it = _sessions.find(sessionId);
         if (it == _sessions.end())
         {
-            _mutex.unlock();
+            // _mutex.unlock();
             return false;
         }
 
         // 创建消息
         Message msg(message._role, message._content);
         msg._messageId = generateMessageId(it->second->_messages.size());
-        // msg._timestamp = std::time(nullptr); // 设置消息时间戳
+        msg._timestamp = std::time(nullptr); // 设置消息时间戳
         INFO("message Info: content {}  timestamap {}", msg._content, msg._timestamp);
 
         // 将消息添加到会话中
         it->second->_messages.push_back(msg);
         it->second->_updatedAt = std::time(nullptr);
         INFO("add message success, sessionId = {}, message.content = {}", sessionId, msg._content);
-        _mutex.unlock();
+        // _mutex.unlock();
 
         // 将会话保存到数据库
-        _dataManager.insertMessage(sessionId, msg);
+        // _dataManager.insertMessage(sessionId, msg);
         return true;
     }
 
@@ -139,8 +139,8 @@ namespace ai_chat_sdk
     std::vector<Message> SessionManager::getHistroyMessages(const std::string &sessionId) const
     {
         // 先从内存中获取会话消息，如果内存中获取不到，再到数据库中获取
-        // std::lock_guard<std::mutex> lock(_mutex);
-        _mutex.lock();
+        std::lock_guard<std::mutex> lock(_mutex);
+        // _mutex.lock();
         auto it = _sessions.find(sessionId);
         if (it != _sessions.end())
         {
@@ -156,7 +156,9 @@ namespace ai_chat_sdk
     // 更新会话时间戳
     void SessionManager::updateSessionTimestamp(const std::string &sessionId)
     {
-        _mutex.lock();
+        std::lock_guard<std::mutex> lock(_mutex);
+
+        // _mutex.lock();
         auto it = _sessions.find(sessionId);
         if (it != _sessions.end())
         {
