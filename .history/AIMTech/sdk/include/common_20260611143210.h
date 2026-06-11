@@ -29,15 +29,13 @@ namespace ai_chat_sdk
         std::string _modelName;    // 模型名称
         double _temperature = 0.7; // 温度参数
         int _maxTokens = 2048;     // 最大生成长度
-
-        virtual ~Config() = default; // 虚析构函数，确保派生类对象被正确销毁  目的主要是为了实现：向下转型时的安全性
     };
 
     // 通过API方式调用模型的输入参数
     struct APIConfig : public Config
     {
-        std::string _apiKey; // API密钥
-        // std::string _endpoint; // API端点URL
+        std::string _apiKey;   // API密钥
+        std::string _endpoint; // API端点URL
     };
 
     // 通过Ollama方式调用模型的输入参数

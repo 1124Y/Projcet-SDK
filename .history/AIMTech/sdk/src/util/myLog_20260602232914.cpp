@@ -42,6 +42,7 @@ namespace myLog
                     _logger = spdlog::basic_logger_mt<spdlog::async_factory>(loggerName, loggerFile);
                 }
             }
+
             // 格式设置
             // [%H:%M:%S] 时分秒
             // [%n] 日志器名称

@@ -30,7 +30,7 @@ namespace ai_chat_sdk
         double _temperature = 0.7; // 温度参数
         int _maxTokens = 2048;     // 最大生成长度
 
-        virtual ~Config() = default; // 虚析构函数，确保派生类对象被正确销毁  目的主要是为了实现：向下转型时的安全性
+        virtual ~Config() = default;
     };
 
     // 通过API方式调用模型的输入参数
